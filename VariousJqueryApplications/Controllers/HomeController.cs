@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,6 +25,23 @@ namespace VariousJqueryApplications.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult UploadFile()
+        {
+            return View();
+        }
+
+        [HttpPost, ActionName("UploadFile")]
+        public ActionResult SingleUploadFile(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string filePath = Path.GetFileName(file.FileName);
+                var uploadPath = Path.Combine(Server.MapPath("~/Files"), filePath);
+                file.SaveAs(uploadPath);
+            }
             return View();
         }
     }
