@@ -34,13 +34,16 @@ namespace VariousJqueryApplications.Controllers
         }
 
         [HttpPost, ActionName("UploadFile")]
-        public ActionResult SingleUploadFile(HttpPostedFileBase file)
+        public ActionResult MultipleUploadFile(IEnumerable<HttpPostedFileBase> files)
         {
-            if (file != null)
+            foreach (var file in files)
             {
-                string filePath = Path.GetFileName(file.FileName);
-                var uploadPath = Path.Combine(Server.MapPath("~/Files"), filePath);
-                file.SaveAs(uploadPath);
+                if (file != null)
+                {
+                    string filePath = Path.GetFileName(file.FileName);
+                    var uploadPath = Path.Combine(Server.MapPath("~/Files"), filePath);
+                    file.SaveAs(uploadPath);
+                }
             }
             return View();
         }

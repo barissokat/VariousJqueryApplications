@@ -5,13 +5,30 @@
 
 <h2>UploadFile</h2>
 <body>
-    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @id = "form1" }))
+    @using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new
+    { @enctype = "multipart/form-data", @id = "form1" }))
     {
         <div id="fileControls">
             <div id="file1">
-                <input type="file" name="file" />
+                <input type="file" name="files" />
             </div>
         </div>
+        <input type="button" id="btnAddFileControl" value="Add One More File" />
         <input type="submit" id="btnUpload" value="Upload" />
     }
 </body>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.controlCount = 1;
+        $("#btnAddFileControl").click(function () {
+            if ($.controlCount <= 20) {
+                $.lastFileControlDiv = $("#file" + $.controlCount);
+                $.newFileControlDiv = $.lastFileControlDiv.clone(true);
+                $.newFileControlDiv.attr("id", "file" + (++$.controlCount));
+                $.newFileControlDiv.insertAfter($.lastFileControlDiv);
+            }
+        });
+    });
+</script>
