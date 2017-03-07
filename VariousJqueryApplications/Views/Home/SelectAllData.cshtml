@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "SelectAllData";
+}
+
+<h2>SelectAllData</h2>
+
+<table>
+    <tr>
+        <td></td>
+        <td>Name</td>
+        <td>Price</td>
+    </tr>
+    @foreach (VariousJqueryApplications.Models.Product item in ViewBag.Products)
+    {
+        <tr>
+            <td>
+                <input type="checkbox" value="@item.Id" name="cbSelectProduct" />
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+        </tr>
+    }
+</table>
+<div>
+    <input type="checkbox" id="cbSelectAll" /> Select All
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#cbSelectAll").click(function () {
+            $.selected = this.checked;
+            $("input[name='cbSelectProduct']").each(function () {
+                this.checked = $.selected;
+            });
+        });
+    });
+</script>

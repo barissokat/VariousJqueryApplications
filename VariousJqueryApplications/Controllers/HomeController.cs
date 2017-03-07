@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VariousJqueryApplications.Models;
 
 namespace VariousJqueryApplications.Controllers
 {
@@ -45,6 +46,18 @@ namespace VariousJqueryApplications.Controllers
                     file.SaveAs(uploadPath);
                 }
             }
+            return View();
+        }
+
+        public ActionResult SelectAllData()
+        {
+            List<Product> products = new List<Product>()
+            {
+                new Product { Id = 1, Name = "PC", Price = 1200 },
+                new Product { Id = 1, Name = "Laptop", Price = 2200 },
+                new Product { Id = 1, Name = "Tablet", Price = 3200 }
+            };
+            ViewBag.Products = products;
             return View();
         }
     }
