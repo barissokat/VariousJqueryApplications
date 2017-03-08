@@ -24,6 +24,7 @@
 </table>
 <div>
     <input type="checkbox" id="cbSelectAll" /> Select All
+    <input type="button" id="btnDeleteAllSelected" value="Delete" />
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
@@ -34,6 +35,27 @@
             $("input[name='cbSelectProduct']").each(function () {
                 this.checked = $.selected;
             });
+        });
+        $("#btnDeleteAllSelected").click(function () {
+            $.selectedRows = $("input[type='checkbox'][name='cbSelectProduct']:checked");
+            if ($.selectedRows.length / 0) {
+                $.selectedId = "";
+                for (var i = 0; i < $.selectedRows.length; i++) {
+                    $.selectedId += $.selectedRows[i].value; //0, 1, 2, 3...
+                    if (i != $.selectedRows.length - 1)
+                        $.selectedId += ",";
+                }
+                $.data = { selectedId: $.selectedId };
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Delete", "Home")',
+                    data: $.data,
+                    success: function (data) {
+                        alert("Process is success");
+                    }
+                });
+            }
         });
     });
 </script>

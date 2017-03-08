@@ -54,11 +54,17 @@ namespace VariousJqueryApplications.Controllers
             List<Product> products = new List<Product>()
             {
                 new Product { Id = 1, Name = "PC", Price = 1200 },
-                new Product { Id = 1, Name = "Laptop", Price = 2200 },
-                new Product { Id = 1, Name = "Tablet", Price = 3200 }
+                new Product { Id = 2, Name = "Laptop", Price = 2200 },
+                new Product { Id = 3, Name = "Tablet", Price = 3200 }
             };
             ViewBag.Products = products;
             return View();
+        }
+
+        [HttpPost]
+        public void Delete(string selectedId)
+        {
+
         }
     }
 }
