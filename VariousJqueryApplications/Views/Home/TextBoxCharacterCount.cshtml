@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "TextBoxCharacterCount";
+}
+
+<h2>TextBoxCharacterCount</h2>
+
+<div>
+    <input type="text" id="situation" style="width: 300px;" />
+
+    <input type="button" id="sendSituation" value="Send" />
+</div>
+
+<div id="remainCharacterCount"></div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.maxCharacterCount = 50;
+        $.characterCount = $("#situation").val().length;
+        $.remainCharacterCount = $.maxCharacterCount - $.characterCount;
+        $("#remainCharacterCount").text($.remainCharacterCount + " characters remain.").css("color", "black");
+
+        $("#situation").keyup(function () {
+            $.characterCount = $("#situation").val().length;
+            $.remainCharacterCount = $.maxCharacterCount - $.characterCount;
+            $("#remainCharacterCount").text($.remainCharacterCount + " characters remain.");
+            if ($.remainCharacterCount >= 20) {
+                $("#remainCharacterCount").css("color", "grey");
+                $("sendSituation").removeAttr("disabled");
+            }
+            else if ($.remainCharacterCount >= 0) {
+                $("#remainCharacterCount").css("color", "#5c0000");
+                $("sendSituation").removeAttr("disabled");
+            }
+            else {
+                $("#remainCharacterCount").css("color", "red");
+                $("sendSituation").removeAttr("disabled");
+            }
+        });
+    });
+</script>

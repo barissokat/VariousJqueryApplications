@@ -64,7 +64,12 @@ namespace VariousJqueryApplications.Controllers
         [HttpPost]
         public void Delete(string selectedId)
         {
+            //Delete
+        }
 
+        public ActionResult TextBoxCharacterCount()
+        {
+            return View();
         }
     }
 }
