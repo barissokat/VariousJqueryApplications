@@ -71,5 +71,23 @@ namespace VariousJqueryApplications.Controllers
         {
             return View();
         }
+
+        SalesContext db = new SalesContext();
+
+        public ActionResult IlIlce()
+        {
+            return View(this.db.Iller.ToList());
+        }
+
+        [HttpPost]
+        public JsonResult GetIlce(int IlId)
+        {
+            var ilceler = db.Ilceler.Where(ilce => ilce.IlId == IlId).Select(Ilce => new IdName
+            {
+                Id = Ilce.Id,
+                Name = Ilce.Name
+            }).ToList();
+            return Json(ilceler);
+        }
     }
 }

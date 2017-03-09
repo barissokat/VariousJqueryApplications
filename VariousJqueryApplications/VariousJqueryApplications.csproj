@@ -203,8 +203,13 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IdName.cs" />
+    <Compile Include="Models\Il.cs" />
+    <Compile Include="Models\Ilce.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\SalesContext.cs" />
+    <Compile Include="Models\SalesInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -232,7 +237,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -269,6 +276,7 @@
     <Content Include="Views\Home\UploadFile.cshtml" />
     <Content Include="Views\Home\SelectAllData.cshtml" />
     <Content Include="Views\Home\TextBoxCharacterCount.cshtml" />
+    <Content Include="Views\Home\IlIlce.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "IlIlce";
+}
+
+<h2>IlIlce</h2>
+
+<div>
+    Il:
+    <select id="il">
+        <option value="0">Select</option>
+        @foreach (VariousJqueryApplications.Models.Il il in Model)
+        {
+            <option value="@il.Id">@il.Name</option>
+        }
+    </select>
+</div>
+<div>
+    Ilce:
+    <select id="ilce"></select>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ilId = $("#il").val();
+        GetIlce($.ilId);
+        $("#il").change(function () {
+            $.ilId = $(this).val();
+            GetIlce($.IlId);
+        });
+    });
+    function GetIlce(ilId) {
+        $("#ilce").empty();
+        $.ajax({
+            type: "POST",
+            url: '@Url.Action("GetIlce", "Home")',
+            data: { IlId: $.ilId },
+            dataType: "json",
+            success: function (ilceler) {
+                $.each(ilceler, function (index, ilce) {
+                    $("#ilce").append("<option value=" + ilce.Id + ">" + ilce.Name + "</option>");
+                })
+
+            }
+        });
+    }
+</script>
